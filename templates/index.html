@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block body %}  
+
+      <div class="container my-3">
+        <h2>Stocks that are in uptrend</h2>
+        
+                {% if uptrend_list|length ==0 %}
+                    no record
+                {% else %}
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">SNo</th>
+                        <th scope="col">Stock Name</th>
+                        <th scope="col">Stock Symbol</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                {% for stock in uptrend_list %}
+
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{stock[0]}}</td>
+                    <td>{{stock[1]}}</td>
+                    <td>
+                        <a href ="/load/{{stock[0]}}/{{stock[1]}}" type="button" class="btn btn-outline-dark btn-sm mx-1">View</button>  
+                    </td>
+                  </tr> 
+                {% endfor %}
+                
+             
+            </tbody>
+          </table>
+          {% endif %}
+    </div>
+    <div class="container my-3">
+      <h2>Stocks that are in downtrend</h2>
+      
+              {% if downtrend_list|length ==0 %}
+                  no record
+              {% else %}
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">SNo</th>
+                      <th scope="col">Stock Name</th>
+                      <th scope="col">Stock Symbol</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+              {% for stock in downtrend_list %}
+
+              <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td>{{stock[0]}}</td>
+                  <td>{{stock[1]}}</td>
+                  <td>
+                      <a href ="/load/{{stock[0]}}/{{stock[1]}}" type="button" class="btn btn-outline-dark btn-sm mx-1">View</button>  
+                  </td>
+                </tr> 
+              {% endfor %}
+              
+           
+          </tbody>
+        </table>
+        {% endif %}
+  </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+
+    {% endblock body %}
+    
