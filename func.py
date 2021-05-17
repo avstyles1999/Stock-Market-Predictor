@@ -1,6 +1,10 @@
 import yfinance
 import pandas as pd 
+pd.options.mode.chained_assignment = None  # default='warn'
+import warnings
+warnings.filterwarnings("ignore")
 import numpy as np
+import os
 from matplotlib import pyplot as plt
 from datetime import date
 from sklearn.model_selection import train_test_split
@@ -140,6 +144,9 @@ def downtrend(price):
 def view_data(s):
     #plotting data
 
+    if os.path.exists(f'./static/images/plot_{s}.png'):
+        os.remove(f'./static/images/plot_{s}.png')
+
     data = yfinance.download(s,'1996-1-1',date.today())
 
     data.replace([np.inf, -np.inf], np.nan).dropna(axis=1)
@@ -150,7 +157,7 @@ def view_data(s):
     plt.plot( data['Date'],data['Close'],  label='Close')
     plt.xlabel('Date',fontsize=14)
     plt.ylabel('Price USD ($)',fontsize=14)
-    plt.savefig('./static/plot.png')
+    plt.savefig(f'./static/images/plot_{s}.png')
 
 def stock_prediction(s,n,li,mi):
     #data = pd.read_csv("NSE SBIN - Sheet1.csv")

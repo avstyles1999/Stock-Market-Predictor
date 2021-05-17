@@ -3,7 +3,7 @@
 
 <div class="container my-3">
     <h2>{{name}}</h2>
-    <img src="{{url_for('static', filename='plot.png')}}" class="img-fluid" alt="stock graph">
+    <img src="{{ url_for('static', filename='images/plot_' + s +'.png') }}" class="img-fluid" alt="stock graph">
 </div>
 
 {% endblock body %}
